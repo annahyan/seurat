@@ -7507,7 +7507,11 @@ SingleRasterMap <- function(
   plot <- ggplot(data = data) +
     my_geom(mapping = aes_string(x = 'Cell', y = 'Feature', fill = 'Expression')) +
     theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
-    scale_fill_gradientn(limits = limits, colors = colors, na.value = "white") +
+      scale_fill_gradient2(low = colors[1], high = colors[length(colors)],
+                           limits = limits,
+                           #colors = colors,
+                           midpoint = 0,
+                           na.value = "white") +
     labs(x = NULL, y = NULL, fill = group.by %iff% 'Expression') +
     WhiteBackground() + NoAxes(keep.text = TRUE)
   if (!is.null(x = group.by)) {
